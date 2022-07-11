@@ -1,0 +1,103 @@
+
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(4, 103, 103);
+}
+
+
+#mainHeader{
+    height: 35px;
+    background-color: palevioletred;
+    color: honeydew;
+    padding: 3px 10px;
+    text-align: center;
+}
+
+#mainDiv{
+    display: flex;
+
+}
+
+.basicStyle{
+
+}
+
+aside{
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    height: 100%;
+    background-color: aquamarine;
+    margin: 10px;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#currentCity{
+border-width: 3px;
+border-radius: 10px;
+flex-grow: 1;
+height: 200px;
+width: 95%;
+background-color: aquamarine;
+margin: 10px;
+padding: 7px;
+
+}
+
+#forcast{
+    display: flex;
+    flex-grow: 1;
+    height: 200px;
+    width: 95%;
+    background-color: aquamarine;
+    margin: 10px;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#rightSide{
+    flex-direction: column;
+    display: flex;
+}
+#clear{
+    background-color: rgb(241, 102, 102);
+
+}
+#inputBtn{
+    background-color: rgb(44, 231, 109);
+width: 75px;
+}
+#cityinput{
+    background-color: rgb(112, 187, 253);
+    width: 150px;
+    height: 20px;
+    margin: 5px;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+#infoDiv{
+    margin: 10px 20px;
+}
+
+#infoDiv:last-child{
+    /* background-color: blue; */
+    width: 100px;
+
+}
+/* media queries */
+
+@media screen and (max-width:400px){
+    #forcast{
+        flex-direction: column;
+        height: 100%;
+        
+    }
+    
+}
