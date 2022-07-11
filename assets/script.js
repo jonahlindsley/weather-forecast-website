@@ -64,7 +64,7 @@ fetch(queryRequest).then(function(res){
         return res .json();
     }) .then(function(data){
         console.log(data)
-  
+  var that = `<i class="fa-thin fa-sun"></i>`
         var cityInfo = [somthing, cityName, data.current.feels_like, data.current.wind_speed, data.current.humidity, data.current.uvi]
         var titles = ['', '', 'temp ', 'wind speed ', 'humidity ', 'uvi ']
         currentCity.innerHTML = '';
@@ -75,18 +75,39 @@ fetch(queryRequest).then(function(res){
             infoDiv.innerText = `${titles[i]} ${cityInfo[i]}`
             currentCity.appendChild(infoDiv)
         }
-        if (data.current.uvi = 2 || data.current.uvi < 2){
+        if (Math.floor(data.current.uvi) < 2){
             var lastchild =  document.querySelectorAll('#infoDiv')
             var uviDiv = lastchild[5]
             uviDiv.style.background = " rgb(143, 239, 91)";
-        }else if (data.current.uvi = 7 || data.current.uvi < 7){
+            console.log('first one tripping')
+        }else if (Math.floor(data.current.uvi) < 7){
             var lastchild =  document.querySelectorAll('#infoDiv')
             var uviDiv = lastchild[5]
-            uviDiv.style.background = "rgb(239, 239, 91);"
+            uviDiv.style.background = " rgb(239, 239, 91)";
+            console.log('second one tripping')
         }else{
             var lastchild =  document.querySelectorAll('#infoDiv')
             var uviDiv = lastchild[5]
-            uviDiv.style.background = "rgb(241, 102, 102)"
+            uviDiv.style.background = "rgb(241, 102, 102)";
+            console.log('third one tripping')
+        }
+        //checks the forcast to determin the correct icon
+        if (data.current.clouds < 5){
+            console.log('clear sky is running')
+            //clear skys icon
+            currentCity.insertAdjacentHTML("afterend", that)
+        }else if (data.current.clouds < 50){
+            console.log('partly cloudy is running')
+            //partlycloudy
+            currentCity.insertAdjacentHTML('beforeend', `<i class="fa-thin fa-cloud-sun"></i>`)
+        }else if (data.current.clouds <90){
+            console.log('party sunny is running')
+            // partly sunny
+            currentCity.innerHTML = `<i class="fa-solid fa-cloud-sun"></i>`
+        }else{
+            console.log('last else is running')
+            //cloudy icon
+            currentCity.innerHTML = `<i class="fa-solid fa-cloud"></i>`
         }
     })
 
@@ -101,10 +122,13 @@ fetch(queryRequest).then(function(res){
         let forcastvalues = data.list.slice(0, 5)
         for (let i = 0; i < forcastvalues.length; i++) {
         var date = parseInt(forcastDate2) + i
+        let iconGen = data.list.slice(i, i+1)
+        var threeh = '3h'
+        console.log(`${forcastvalues[i].rain}${threeh}`)
           let targetDiv = document.getElementById(`forcast${i+1}`)
           let timeDiv = document.createElement('div')
           timeDiv.setAttribute('id', 'timeDiv')
-            timeDiv.innerHTML = `${date}th`
+            timeDiv.innerHTML = `july ${date}th`
           let tempDiv = document.createElement('div')
           tempDiv.setAttribute('id', 'tempDiv')
             tempDiv.innerHTML = `temp ${forcastvalues[i].main.temp}`
@@ -119,6 +143,29 @@ fetch(queryRequest).then(function(res){
             tempDiv.style.padding = '4px 30px'
             windDiv.style.padding = '4px 30px'
             humidityDiv.style.padding = '4px 30px';
+            console.log(data.list.i)
+            // if (data.list.i.rain > 75 ){
+                // console.log('rain is running')
+                //rain icon
+                // <i class="fa-solid fa-cloud-showers-heavy"></i>
+            // }
+            if (forcastvalues[i].clouds.all < 5){
+                console.log('clear sky is running')
+                //clear skys icon
+                // <i class="fa-thin fa-sun"></i>
+            }else if (forcastvalues[i].clouds.all < 50){
+                console.log('partly cloudy is running')
+                //partlycloudy
+                // <i class="fa-thin fa-cloud-sun"></i>
+            }else if (forcastvalues[i].clouds.all <90){
+                console.log('party sunny is running')
+                // partly sunny
+                // <i class="fa-solid fa-cloud-sun"></i>
+            }else{
+                console.log('last else is running')
+                //cloudy icon
+                //<i class="fa-solid fa-cloud"></i>
+            }
             
         }
      })
@@ -132,7 +179,9 @@ fetch(queryRequest).then(function(res){
 
 
 
-// if ()
+
+
+
 
 
 
