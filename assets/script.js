@@ -53,7 +53,7 @@ function renderSearches() {
 function getWeather(city){
 
     //var city = document.getElementById('inputResult').value
-    var queryRequest =` http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
+    var queryRequest =` https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
 //the API request function
 fetch(queryRequest).then(function(res){
     return res .json();
@@ -117,7 +117,7 @@ fetch(queryRequest).then(function(res){
     var forcastDate2 = somthing.slice(5, 7);
     console.log(somthing)
 
-     var fiveDayForcast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=imperial`
+     var fiveDayForcast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=imperial`
      fetch(fiveDayForcast).then(function(res){
         return res.json();
      }).then(function(data){
