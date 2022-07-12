@@ -1,4 +1,4 @@
-//when i click search that should create a new button that runs the get weather function with the paramaters that have been saved to LS
+
 
 var searchHistory = JSON.parse(localStorage.getItem('search')) || [];
 var key = "70fc742f790b2f13b5074f8768a1b657";
@@ -10,12 +10,9 @@ var setTime = document.getElementById("currentDay")
 var somthing =  moment().format('MMMM Do YYYY, h:mm:a');
 inputBtn.addEventListener('click', function(event){
     event.preventDefault()
-    // saveSearch()
     var pastSearch = document.getElementById('inputResult').value
     searchHistory.push(pastSearch);
     localStorage.setItem('search', JSON.stringify(searchHistory))
-    // console.log(searchHistory)
-      //render search history function goes here
       renderSearches()
     getWeather(pastSearch)
 }) 
@@ -44,8 +41,14 @@ function renderSearches() {
     
 }
 
-//how do i get rid of the extra divs from past searches
-
+    let cloudy = document.createElement('div')
+        cloudy.innerHTML = `<i class="fa-solid fa-cloud"></i>`
+        let PSunny = document.createElement('div')
+        PSunny.innerHTML = `<i class="fa-solid fa-cloud-sun"></i>`
+        let PCloudy = document.createElement('div')
+        PCloudy.innerHTML = `<i class="fa-thin fa-cloud-sun"></i>`
+        let sunny = document.createElement('div')
+        sunny.innerHTML = `<i class="fa-thin fa-sun"></i>`
 //main function
 function getWeather(city){
 
@@ -55,7 +58,7 @@ function getWeather(city){
 fetch(queryRequest).then(function(res){
     return res .json();
 }) .then(function(data){
-    console.log(data)
+    //console.log(data.current.weather[0].icon)
     var lat = data.coord.lat
     var lon = data.coord.lon
     var cityName = data.name
@@ -63,10 +66,11 @@ fetch(queryRequest).then(function(res){
     fetch(uvapi).then(function(res){
         return res .json();
     }) .then(function(data){
+        console.log(data.current.weather[0].icon)
+    //document.getElementById('#current-icon').setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
         console.log(data)
-  var that = `<i class="fa-thin fa-sun"></i>`
         var cityInfo = [somthing, cityName, data.current.feels_like, data.current.wind_speed, data.current.humidity, data.current.uvi]
-        var titles = ['', '', 'temp ', 'wind speed ', 'humidity ', 'uvi ']
+        var titles = ['', '', 'temp ', 'wind speed ', 'humidity ', 'uvi ', '']
         currentCity.innerHTML = '';
         for (let i = 0; i < cityInfo.length; i++) {
             let infoDiv = document.createElement('div')
@@ -91,27 +95,25 @@ fetch(queryRequest).then(function(res){
             uviDiv.style.background = "rgb(241, 102, 102)";
             console.log('third one tripping')
         }
+
         //checks the forcast to determin the correct icon
+
         if (data.current.clouds < 5){
             console.log('clear sky is running')
-            //clear skys icon
-            currentCity.insertAdjacentHTML("afterend", that)
+            currentCity.appendChild(sunny)
         }else if (data.current.clouds < 50){
             console.log('partly cloudy is running')
-            //partlycloudy
-            currentCity.insertAdjacentHTML('beforeend', `<i class="fa-thin fa-cloud-sun"></i>`)
+            currentCity.appendChild(PCloudy)
         }else if (data.current.clouds <90){
             console.log('party sunny is running')
-            // partly sunny
-            currentCity.innerHTML = `<i class="fa-solid fa-cloud-sun"></i>`
+            currentCity.appendChild(PSunny)
         }else{
             console.log('last else is running')
-            //cloudy icon
-            currentCity.innerHTML = `<i class="fa-solid fa-cloud"></i>`
+            currentCity.appendChild(cloudy)
         }
     })
 
-
+    
     var forcastDate2 = somthing.slice(5, 7);
     console.log(somthing)
 
@@ -119,12 +121,10 @@ fetch(queryRequest).then(function(res){
      fetch(fiveDayForcast).then(function(res){
         return res.json();
      }).then(function(data){
+        console.log(data)
         let forcastvalues = data.list.slice(0, 5)
         for (let i = 0; i < forcastvalues.length; i++) {
         var date = parseInt(forcastDate2) + i
-        let iconGen = data.list.slice(i, i+1)
-        var threeh = '3h'
-        console.log(`${forcastvalues[i].rain}${threeh}`)
           let targetDiv = document.getElementById(`forcast${i+1}`)
           let timeDiv = document.createElement('div')
           timeDiv.setAttribute('id', 'timeDiv')
@@ -143,68 +143,21 @@ fetch(queryRequest).then(function(res){
             tempDiv.style.padding = '4px 30px'
             windDiv.style.padding = '4px 30px'
             humidityDiv.style.padding = '4px 30px';
-            console.log(data.list.i)
-            // if (data.list.i.rain > 75 ){
-                // console.log('rain is running')
-                //rain icon
-                // <i class="fa-solid fa-cloud-showers-heavy"></i>
-            // }
             if (forcastvalues[i].clouds.all < 5){
                 console.log('clear sky is running')
-                //clear skys icon
-                // <i class="fa-thin fa-sun"></i>
+                targetDiv.appendChild(sunny)
             }else if (forcastvalues[i].clouds.all < 50){
                 console.log('partly cloudy is running')
-                //partlycloudy
-                // <i class="fa-thin fa-cloud-sun"></i>
+                targetDiv.appendChild(PCloudy)
             }else if (forcastvalues[i].clouds.all <90){
                 console.log('party sunny is running')
-                // partly sunny
-                // <i class="fa-solid fa-cloud-sun"></i>
+                targetDiv.appendChild(PSunny)
             }else{
                 console.log('last else is running')
-                //cloudy icon
-                //<i class="fa-solid fa-cloud"></i>
+                targetDiv.appendChild(cloudy)
             }
             
         }
      })
     
 })}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// as a user using our website,
-// i want to, open the app and see a clear dashboard interface 
-// when i look at the top, i am presented with the date and time
-// when i click on a button i am linked to a website
-// when i scroll to the bottom of the screen, i see a random qoute
-// when i view the website on a different sized screens, i find dynamic styling that scales to the viewport
-// as a user i want to be able to reprogram the buttons to the links i need
-// as a user i want to be able to create folder buttons to open several commonly used site at once
-// as a user i want to be able to change the color theme of the webpage 
-// as a user i want to be able to set my location and have a 5 day forcast come up when i open the page
