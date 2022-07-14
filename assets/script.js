@@ -19,10 +19,10 @@ inputBtn.addEventListener('click', function (event) {
 clearBtn.addEventListener('click', function () {
     searchHistory = []
     localStorage.clear();
-    //render search history function goes here
 })
 
-function renderSearches() {
+//render search history function goes here
+    function renderSearches() {
     pastSearches.innerHTML = ""
     for (let i = 0; i < searchHistory.length; i++) {
         const cityNames = document.createElement('button');
@@ -40,7 +40,7 @@ function renderSearches() {
 }
 //main function
 function getWeather(city) {
-    
+    var city = document.getElementById('inputResult').value
     var queryRequest = ` https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
     //the API request function
     fetch(queryRequest).then(function (res) {
@@ -77,15 +77,15 @@ function getWeather(city) {
                 currentUVI.style.background = "rgb(241, 102, 102)";
             }
             setIcon.setAttribute('src', `http://openweathermap.org/img/wn/${icon}@2x.png`);
-            //checks the forcast to determin the correct icon
+
+
+            //inserts the correct forcast data into the forcast divs
 
             for (let i = 0; i < 5; i++) {
-                let targetDiv = document.getElementById(`forcast${i + 1}`)
                 let timeDiv = document.getElementById(`timeDiv${i}`)
                 let tempDiv = document.getElementById(`tempDiv${i}`)
                 let humidityDiv = document.getElementById(`humidityDiv${i}`)
                 let windDiv = document.getElementById(`windDiv${i}`)
-                let html2 = `<div><div><img src="" alt="" id='current-icon${[i]}'></div></div>`;
                 var icon2 = data.daily[i+1].weather[0].icon
                 var time = parseInt(forcastDate) 
                 var setIcon = document.getElementById(`current-icon${[i]}`)
@@ -93,7 +93,6 @@ function getWeather(city) {
                 humidityDiv.innerHTML = `humidity ${data.daily[i+1].humidity}`
                 windDiv.innerHTML = `wind speed ${data.daily[i+1].wind_speed}`
                 timeDiv.innerText = `july ${time+i+1}`
-                targetDiv.insertAdjacentHTML("beforeend", html2);
                 setIcon.setAttribute('src', `http://openweathermap.org/img/wn/${icon2}@2x.png`);
                 timeDiv.style.padding = '4px 30px';
                 tempDiv.style.padding = '4px 30px'

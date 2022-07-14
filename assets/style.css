@@ -1,4 +1,4 @@
-
+/* default resets */
 *{
 padding: 0;
 margin: 0;
@@ -9,7 +9,7 @@ body{
     background-color: rgb(4, 103, 103);
 }
 
-
+/* styles the main header */
 #mainHeader{
     height: 35px;
     background-color: palevioletred;
@@ -17,16 +17,12 @@ body{
     padding: 3px 10px;
     text-align: center;
 }
-
+/* sets the div that holds everything to flex */
 #mainDiv{
     display: flex;
-
+    
 }
-
-.basicStyle{
-
-}
-
+/* styles the search section of the page */
 aside{
     display: flex;
     width: 200px;
@@ -37,19 +33,22 @@ aside{
     padding: 7px;
     border-radius: 10px;
 }
-
+/* the styles for the current city display */
 #currentCity{
-border-width: 3px;
-border-radius: 10px;
-flex-grow: 1;
-height: 200px;
-width: 300px;
-background-color: aquamarine;
-margin: 10px;
-padding: 7px;
-
+    border-width: 3px;
+    border-radius: 10px;
+    flex-grow: 1;
+    height: 200px;
+    width: 300px;
+    background-color: aquamarine;
+    margin: 10px;
+    padding: 7px;
 }
-
+#rightSide{
+    flex-direction: column;
+    display: flex;
+}
+/* the styles fot the 5 day forcast section */
 #forcast{
     display: flex;
     flex-grow: 1;
@@ -60,19 +59,16 @@ padding: 7px;
     padding: 7px;
     border-radius: 10px;
 }
-
-#rightSide{
-    flex-direction: column;
-    display: flex;
-}
+/* sets background color of the clear search BTN */
 #clear{
     background-color: rgb(241, 102, 102);
-
 }
+/* sets background color to the submit BTN */
 #inputBtn{
     background-color: rgb(44, 231, 109);
 width: 75px;
 }
+/* styles the city search box */
 #cityinput{
     background-color: rgb(112, 187, 253);
     width: 150px;
@@ -81,24 +77,17 @@ width: 75px;
     padding: 3px;
     border-radius: 4px;
 }
-
-#infoDiv{
-    margin: 10px 20px;
-}
-
-#infoDiv:last-child{
-    /* background-color: blue; */
-    width: 100px;
-
-}
+/* makes the date appear larger than the other elements for readability */
 .timeDiv{
     font-size: 20px;
     font-weight: 600;
 }
+/* makes the date appear larger than the other elements for readability */
 #timeDiv{
     font-size: 20px;
     font-weight: 600;
 }
+/* makes the current city name appear larger than the other elements for readability */
 #cityName{
     font-size: 25px;
     font-weight: 600; 
