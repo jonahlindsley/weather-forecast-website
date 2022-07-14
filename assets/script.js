@@ -40,7 +40,7 @@ clearBtn.addEventListener('click', function () {
 }
 //main function
 function getWeather(city) {
-    var city = document.getElementById('inputResult').value
+   
     var queryRequest = ` https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
     //the API request function
     fetch(queryRequest).then(function (res) {

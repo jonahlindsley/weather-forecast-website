@@ -92,6 +92,12 @@ width: 75px;
     font-size: 25px;
     font-weight: 600; 
 }
+/* adds the border around the forcast dates */
+.forcastEls{
+    border: 2px solid  rgb(241, 102, 102);
+    border-radius: 9px;
+    margin: 5px;
+}
 /* media queries */
 
 @media screen and (max-width:400px){
