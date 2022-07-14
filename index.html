@@ -24,6 +24,7 @@
         </nav>
 
     </header>
+
     <div id="mainDiv">
         <aside id="searchSection">
             <h2>search for a city</h2>
@@ -32,23 +33,56 @@
                 <button id="inputBtn">search</button>
                 <button id="clear">clear history</button>
                 <div id="pastSearches">
-
-                </div>
             </form>
 
         </aside>
+       
         <div id="rightSide">
             <div id="currentCity" class="main">
                 <!-- top section on right side, holds the current city stats -->
-               <div id='current-icon'></div>
+                    <div id="cityName"></div>
+                    <div id="timeDiv"></div>
+                    <div id="tempDiv"></div>
+                    <div id="humidityDiv"></div>
+                    <div id="windDiv"></div>
+                    <div id="UVIDiv"></div>
+                    <div id="iconEl">
+                    <img src="" alt="" id='current-icon'>
+                    </div>
+            </div>
             </div>
             <!-- lower right section, holds the 5 day forcast -->
             <div id="forcast" class="main">
-                <div id="forcast1" class=""></div>
-                <div id="forcast2" class=""></div>
-                <div id="forcast3" class=""></div>
-                <div id="forcast4" class=""></div>
-                <div id="forcast5" class=""></div>
+                <div id="forcast1" class="">
+                    <div class="timeDiv" id="timeDiv0"></div>
+                    <div id="tempDiv0"></div>
+                    <div id="humidityDiv0"></div>
+                    <div id="windDiv0"></div>
+                </div>
+                <div id="forcast2" class="">
+                    <div class="timeDiv" id="timeDiv1"></div>
+                    <div id="tempDiv1"></div>
+                    <div id="humidityDiv1"></div>
+                    <div id="windDiv1"></div>
+                </div>
+                <div id="forcast3" class="">
+                    <div class="timeDiv" id="timeDiv2"></div>
+                    <div id="tempDiv2"></div>
+                    <div id="humidityDiv2"></div>
+                    <div id="windDiv2"></div>
+                </div>
+                <div id="forcast4" class="">
+                    <div class="timeDiv" id="timeDiv3"></div>
+                    <div id="tempDiv3"></div>
+                    <div id="humidityDiv3"></div>
+                    <div id="windDiv3"></div>
+                </div>
+                <div id="forcast5" class="">
+                    <div class="timeDiv" id="timeDiv4"></div>
+                    <div id="tempDiv4"></div>
+                    <div id="humidityDiv4"></div>
+                    <div id="windDiv4"></div>
+                </div>
 
             </div>
         </div>
@@ -56,5 +90,23 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="assets/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </html>
